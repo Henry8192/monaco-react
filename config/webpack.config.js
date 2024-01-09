@@ -186,7 +186,6 @@ module.exports = function (webpackEnv) {
     return loaders;
   };
   return {
-    plugins: [new MonacoWebpackPlugin({})],
     target: ['browserslist'],
     // Webpack noise constrained to errors and warnings
     stats: 'errors-warnings',
@@ -564,6 +563,7 @@ module.exports = function (webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+      new MonacoWebpackPlugin({}),
       new HtmlWebpackPlugin(
         Object.assign(
           {},
