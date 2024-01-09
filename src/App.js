@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef } from 'react';
+import * as monaco from 'monaco-editor';
+// or import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+// if shipping only a subset of the features & languages is desired
+
+
+function MonacoEditor() {
+  // const containerRef = useRef();
+
+  // useEffect(() => {
+  //   // if (null === containerRef.current) {
+  //     containerRef.current = document.getElementById('container');
+  //     monaco.editor.create(containerRef.current, {
+  //       value: 'console.log("Hello, world")',
+  //       language: 'javascript'
+  //     });
+  //   // }
+  // }, []);
+
+useEffect(() => {
+  monaco.editor.create(document.getElementById('container'), {
+    value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+    language: 'javascript'
+  });
+}, []);
+// monaco.editor.create(document.getElementById('container'), {
+// 	value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+// 	language: 'javascript'
+// });
+// ref={containerRef.current}
+  return <div id="container"  style={{ height: '100vh' , width:'100vw'}} />;
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MonacoEditor />
     </div>
   );
 }
